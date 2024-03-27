@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pede Pizza - A Melhor Pizza da Cidade</title>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#4caf50">
+  <meta name="description" content="Peça as melhores pizzas da cidade com Pede Pizza!">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Pede Pizza">
+  <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+  <link rel="apple-touch-startup-image" href="/launch.jpg">
+  <style>
+    /* Estilos CSS aqui */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pede Pizza - A Melhor Pizza da Cidade</h1>
+    <form id="pizzaForm">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required>
+      
+      <label for="telefone">Telefone com DDD:</label>
+      <input type="text" id="telefone" name="telefone" required>
+      
+      <label for="sabor">Escolha o sabor da pizza:</label>
+      <select id="sabor" name="sabor" required>
+        <option value="">Selecione...</option>
+        <option value="Calabresa">Calabresa - R$ 49,90</option>
+        <option value="Frango">Frango - R$ 49,90</option>
+        <option value="Portuguesa">Portuguesa - R$ 49,90</option>
+      </select>
+      
+      <label for="borda">Deseja adicionar borda de Catupiry?</label>
+      <select id="borda" name="borda" required>
+        <option value="">Selecione...</option>
+        <option value="Sim">Sim</option>
+        <option value="Não">Não</option>
+      </select>
+      
+      <button type="submit">Finalizar Pedido</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('pizzaForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      const nome = formData.get('nome');
+      const telefone = formData.get('telefone');
+      const sabor = formData.get('sabor');
+      const borda = formData.get('borda');
+
+      // Gerar pedido e adicionar figurinha de pizza
+      const pedido = `Pedido de ${nome} (${telefone}):\nSabor: ${sabor}\nBorda de Catupiry: ${borda}`;
+      const linkZap = `https://wa.me/5594991080117?text=${encodeURIComponent(pedido)}`;
+
+      // Redirecionar para o WhatsApp
+      window.location.href = linkZap;
+    });
+  </script>
+</body>
+</html>
